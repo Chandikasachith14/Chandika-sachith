@@ -1,0 +1,229 @@
+
+#include <FastLED.h>
+#define DATA_PIN    12
+#define NUM_LEDS    50
+CRGB leds[NUM_LEDS];
+int BRIGHTNESS = 200;
+
+void setup() {
+  FastLED.addLeds<WS2811, DATA_PIN, RGB>(leds, NUM_LEDS);
+
+
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+
+
+}
+
+void loop() {
+  for (int T = 0; T <= 100; T = T + 1) {
+    delay(T);
+    digitalWrite(2, HIGH);
+    digitalWrite(3, HIGH);
+    digitalWrite(4, HIGH);
+    digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);
+    digitalWrite(7, HIGH);
+    digitalWrite(8, HIGH);
+    digitalWrite(9, HIGH);
+    digitalWrite(10, HIGH);
+    digitalWrite(11, HIGH);
+    delay(T);
+    digitalWrite(2, LOW);
+    digitalWrite(3, LOW);
+    digitalWrite(4, LOW);
+    digitalWrite(5, LOW);
+    digitalWrite(6, LOW);
+    digitalWrite(7, LOW);
+    digitalWrite(8, LOW);
+    digitalWrite(9, LOW);
+    digitalWrite(10, LOW);
+    digitalWrite(11, LOW);
+    delay(T);
+  }
+
+  for (int i = 0; i < 13; i++) {
+    digitalWrite(i, LOW);
+    digitalWrite(i, HIGH);
+
+
+    delay(50);
+  }
+
+  for (int i = 13; i > 0; i--) {
+    digitalWrite(i, HIGH);
+    digitalWrite(i, LOW);
+
+
+  }
+  delay(50);
+  for (int i = 13; i > 0; i--) {
+    digitalWrite(i, LOW);
+    digitalWrite(i, HIGH);
+
+
+    delay(50);
+  }
+
+  for (int i = 0; i < 13; i++) {
+    digitalWrite(i, HIGH);
+    digitalWrite(i, LOW);
+
+  }
+
+
+
+  BrightUpDown(255, 0, 0);
+  BrightUpDown(00, 255, 00);
+  BrightUpDown(0, 0, 254);
+  BrightUpDown(255, 255, 255);
+  BrightUpDown(0, 0, 0);
+
+
+
+  for (int i = 12; i >= 0; i--) {
+    for (int k = 0; k < i; k++) {
+      digitalWrite(i, HIGH);
+      delay(50);
+
+
+    }
+  }
+  for (int i = 12; i >= 0; i--) {
+    digitalWrite(i, LOW);
+  }
+
+  for (int i = 12; i >= 0; i--) {
+    for (int k = 0; k < i; k++) {
+      digitalWrite(k, HIGH);
+      delay(60);
+    }
+  }
+  for (int i = 12; i >= 0; i--) {
+    digitalWrite(i, LOW);
+  }
+
+
+
+
+  for (int i = 0; i < 13; i = i + 2) {
+    digitalWrite(i, HIGH);
+    delay(50);
+  }
+  delay(100);
+
+  for (int i = 13; i > 0; i = i - 2) {
+    digitalWrite(i, HIGH);
+    delay(50);
+  }
+
+
+
+  for (int i = 2; i < 13; i++) {
+    digitalWrite(i, HIGH);
+    delay(40);
+
+  }
+  for (int a = 13; a >= 0; a--) {
+    digitalWrite(a, LOW);
+    delay(40);
+  }
+
+
+  for (int i = 13; i >= 0; i--) {
+    digitalWrite(i, HIGH);
+    delay(40);
+  }
+
+  for (int i = 2; i < 13; i++) {
+    digitalWrite(i, LOW);
+    delay(40);
+  }
+
+  digitalWrite(2, HIGH);
+  digitalWrite(11, HIGH);
+  delay(80);
+  digitalWrite(3, HIGH);
+  digitalWrite(10, HIGH);
+  delay(80);
+  digitalWrite(9, HIGH);
+  digitalWrite(4, HIGH);
+  delay(80);
+  digitalWrite(8, HIGH);
+  digitalWrite(5, HIGH);
+  delay(80);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, HIGH);
+  delay(80);
+  digitalWrite(2, LOW);
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite(11, LOW);
+  delay(100);
+
+
+
+  digitalWrite(6, HIGH);
+  digitalWrite(7, HIGH);
+  delay(80);
+  digitalWrite(5, HIGH);
+  digitalWrite(8, HIGH);
+  delay(80);
+  digitalWrite(4, HIGH);
+  digitalWrite(9, HIGH);
+  delay(80);
+  digitalWrite(3, HIGH);
+  digitalWrite(10, HIGH);
+  delay(80);
+  digitalWrite(2, HIGH);
+  digitalWrite(11, HIGH);
+  delay(80);
+  digitalWrite(2, LOW);
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite(11, LOW);
+  delay(100);
+}
+
+
+
+void BrightUpDown (int R, int G, int B) {
+  for ( int A = 0; A < 50; A++) {
+
+    leds[A].setRGB(R, G, B);
+  }
+
+  FastLED.show();
+
+  for ( int A = 0; A < 255; A++) {
+    FastLED.setBrightness(BRIGHTNESS++);
+    delay(2);
+    FastLED.show();
+  }
+
+  for ( int A = 0; A < 255; A++) {
+    FastLED.setBrightness(BRIGHTNESS--);
+    delay(2);
+    FastLED.show();
+  }
+}
